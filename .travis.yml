@@ -15,6 +15,7 @@ jobs:
      script:
        - node --version
        - npm --version
+       - npm update
        - echo "Testing Started ..."
        - npm run test
        - echo "Testing Finished."
