@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "parcel": "parcel --no-cache index.html"
+    "parcel": "parcel --no-cache index.html",
+    "dev-test": "parcel watch test/* --no-cache & karma start",
+    "test": "parcel build test/* --no-minify && karma start --single-run",
+    "rm-cache": "rm -rf .cache dist"
   },
   "repository": {
     "type": "git",
