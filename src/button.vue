@@ -12,7 +12,7 @@
 import Icon from './icon'
 
 export default {
-    name: 'GuluButton',
+    name: 'L-Button',
     components: {
         'g-icon': Icon
     },
