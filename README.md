@@ -12,3 +12,4 @@ npm i -D chai karma karma-chrome-launcher karma-mocha karma-sinon-chai mocha sin
 ### 持续继承
 
 - travis ci
+
