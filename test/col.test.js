@@ -98,5 +98,4 @@ describe('Col', () => {
         div.remove()
         vm.$destroy()
     })
-
 })
