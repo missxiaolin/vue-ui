@@ -41,9 +41,6 @@ new Vue({
     created() {
     },
     methods: {
-        yyy() {
-            console.log('yyy')
-        },
         showToast1() {
             this.showToast('top')
         },
@@ -63,7 +60,7 @@ new Vue({
                         console.log('他说已经充值智商了')
                     }
                 },
-                autoClose: 3,
+                autoClose: 1,
             })
         }
     }
