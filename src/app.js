@@ -1,17 +1,18 @@
 import Vue from 'vue'
-import Button from './button'
-import Icon from './icon'
-import ButtonGroup from './button-group'
-import Input from './input'
-import Row from './row'
-import Col from './col'
-import Layout from './layout'
-import Header from './header'
-import Sider from './sider'
-import Content from './content'
-import Footer from './footer'
-import Toast from './toast'
-import CollapseItem from './collapse-item'
+import Button from './button.vue'
+import Icon from './icon.vue'
+import ButtonGroup from './button-group.vue'
+import Input from './input.vue'
+import Row from './row.vue'
+import Col from './col.vue'
+import Layout from './layout.vue'
+import Header from './header.vue'
+import Sider from './sider.vue'
+import Content from './content.vue'
+import Footer from './footer.vue'
+import Toast from './toast.vue'
+import Collapse from './collapse.vue'
+import CollapseItem from './collapse-item.vue'
 
 import plugin from './plugin'
 
@@ -28,6 +29,7 @@ Vue.component('g-content', Content)
 Vue.component('g-footer', Footer)
 Vue.component('g-sider', Sider)
 Vue.component('g-toast', Toast)
+Vue.component('g-collapse', Collapse)
 Vue.component('g-collapse-item', CollapseItem)
 Vue.use(plugin)
 
