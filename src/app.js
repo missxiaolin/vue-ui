@@ -11,6 +11,8 @@ import Sider from './sider'
 import Content from './content'
 import Footer from './footer'
 import Toast from './toast'
+import CollapseItem from './collapse-item'
+
 import plugin from './plugin'
 
 
@@ -26,6 +28,7 @@ Vue.component('g-content', Content)
 Vue.component('g-footer', Footer)
 Vue.component('g-sider', Sider)
 Vue.component('g-toast', Toast)
+Vue.component('g-collapse-item', CollapseItem)
 Vue.use(plugin)
 
 new Vue({
