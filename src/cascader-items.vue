@@ -1,22 +1,31 @@
 <template>
   <div class="cascaderItem" :style="{ height: height }">
     <div class="left">
-      <div class="label" v-for="(item, index) in items" @click="leftSelected = item" :key="index">
+      <div
+        class="label"
+        v-for="(item, index) in items"
+        @click="onClickLabel(item)"
+        :key="index"
+      >
         {{ item.name }}
         <icon class="icon" v-if="item.children" name="right"></icon>
       </div>
     </div>
     <div class="right" v-if="rightItems">
       <l-cascader-items
+        ref="right"
         :items="rightItems"
         :height="height"
+        :level="level + 1"
+        :selected="selected"
+        @update:selected="onUpdateSelected"
       ></l-cascader-items>
     </div>
   </div>
 </template>
 
 <script>
-import Icon from "./icon.vue";
+import Icon from "./icon";
 export default {
   name: "LCascaderItems",
   components: { Icon },
@@ -27,19 +36,34 @@ export default {
     height: {
       type: String,
     },
-  },
-  data() {
-    return {
-      leftSelected: null,
-    };
+    selected: {
+      type: Array,
+      default: () => [],
+    },
+    level: {
+      type: Number,
+      default: 0,
+    },
   },
   computed: {
     rightItems() {
-      if (this.leftSelected && this.leftSelected.children) {
-        return this.leftSelected.children;
+      let currentSelected = this.selected[this.level];
+      if (currentSelected && currentSelected.children) {
+        return currentSelected.children;
       } else {
         return null;
       }
+    },
+  },
+  mounted() {},
+  methods: {
+    onClickLabel(item) {
+      let copy = JSON.parse(JSON.stringify(this.selected));
+      copy[this.level] = item;
+      this.$emit("update:selected", copy);
+    },
+    onUpdateSelected(newSelected) {
+      this.$emit("update:selected", newSelected);
     },
   },
 };
@@ -52,6 +76,7 @@ export default {
   align-items: flex-start;
   justify-content: flex-start;
   height: 100px;
+  border: 1px solid red;
   .left {
     height: 100%;
     padding: 0.3em 0;
