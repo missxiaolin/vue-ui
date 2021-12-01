@@ -24,7 +24,7 @@
   "homepage": "https://github.com/missxiaolin/vue-ui#readme",
   "dependencies": {
     "vue": "^2.5.17",
-    "vue-hot-reload-api": "^2.3.0"
+    "vue-hot-reload-api": "^2.3.4"
   },
   "devDependencies": {
     "@vue/component-compiler-utils": "^2.0.0",
@@ -40,6 +40,8 @@
     "parcel-bundler": "^1.9.2",
     "sinon": "^8.1.1",
     "sinon-chai": "^3.4.0",
+    "vue-router": "^3.5.3",
+    "vue-server-renderer": "^2.6.14",
     "vue-template-compiler": "^2.5.16",
     "vuepress": "^1.8.2"
   },
