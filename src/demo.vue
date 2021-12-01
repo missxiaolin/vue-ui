@@ -10,8 +10,8 @@
   </div>
 </template>
 <script>
-import Button from "./button";
-import Cascader from "./cascader";
+import Button from "./button.vue";
+import Cascader from "./cascader.vue";
 
 export default {
   name: "demo",
