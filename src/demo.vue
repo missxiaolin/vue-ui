@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>11111</p>
-    <g-cascader :source="source" popover-height="200px"></g-cascader>
+    <l-cascader :source="source" popover-height="200px"></l-cascader>
     <p>22222</p>
   </div>
 </template>
@@ -12,8 +12,8 @@ import Cascader from "./cascader";
 export default {
   name: "demo",
   components: {
-    "g-button": Button,
-    "g-cascader": Cascader,
+    "l-button": Button,
+    "l-cascader": Cascader,
   },
   data() {
     return {

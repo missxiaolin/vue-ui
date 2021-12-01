@@ -7,10 +7,10 @@
       </div>
     </div>
     <div class="right" v-if="rightItems">
-      <gulu-cascader-items
+      <l-cascader-items
         :items="rightItems"
         :height="height"
-      ></gulu-cascader-items>
+      ></l-cascader-items>
     </div>
   </div>
 </template>
