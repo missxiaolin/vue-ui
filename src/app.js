@@ -50,6 +50,7 @@ import createElement from 'vue'
 
 const h = createElement
 
+
 new Vue({
     el: '#app',
     data: {
@@ -85,6 +86,16 @@ new Vue({
                     ]
                 },
             ]
+        }, {
+            name: '安徽',
+            children: [{
+                name: '合肥',
+                children: [{
+                    name: '瑶海'
+                }, {
+                    name: '庐阳'
+                }]
+            }]
         }]
     },
     created() {
@@ -92,4 +103,3 @@ new Vue({
     methods: {
     }
 })
-
