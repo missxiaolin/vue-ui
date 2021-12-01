@@ -18,7 +18,7 @@
 <script>
 import Icon from "./icon";
 export default {
-  name: "GuluCascaderItems",
+  name: "LCascaderItems",
   components: { Icon },
   props: {
     items: {
