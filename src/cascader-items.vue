@@ -45,10 +45,6 @@ export default {
       default: 0,
     },
   },
-  updated() {
-    console.log("cascader items updated");
-    console.log(JSON.stringify(this.items));
-  },
   computed: {
     rightItems() {
       if (this.selected[this.level]) {
