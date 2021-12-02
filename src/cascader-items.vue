@@ -1,12 +1,7 @@
 <template>
   <div class="cascaderItem" :style="{ height: height }">
     <div class="left">
-      <div
-        class="label"
-        v-for="(item, index) in items"
-        @click="onClickLabel(item)"
-        :key="index"
-      >
+      <div class="label" v-for="(item, index) in items" @click="onClickLabel(item)" :key="index">
         {{ item.name }}
         <icon class="icon" v-if="item.children" name="right"></icon>
       </div>
@@ -25,7 +20,7 @@
 </template>
 
 <script>
-import Icon from "./icon.vue";
+import Icon from "./icon";
 export default {
   name: "LCascaderItems",
   components: { Icon },
@@ -45,8 +40,13 @@ export default {
       default: 0,
     },
   },
+  updated() {
+    console.log("cascader items updated");
+    console.log(JSON.stringify(this.items));
+  },
   computed: {
     rightItems() {
+      console.log("计算rightItems");
       let currentSelected = this.selected[this.level];
       if (currentSelected && currentSelected.children) {
         return currentSelected.children;
@@ -60,7 +60,7 @@ export default {
     onClickLabel(item) {
       let copy = JSON.parse(JSON.stringify(this.selected));
       copy[this.level] = item;
-      copy.splice(this.level + 1) // 一句话
+      copy.splice(this.level + 1); // 一句话
       this.$emit("update:selected", copy);
     },
     onUpdateSelected(newSelected) {
