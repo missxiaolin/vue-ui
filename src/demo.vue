@@ -1,12 +1,13 @@
 <template>
   <div>
-    <l-cascader
-      :source="source"
-      popover-height="200px"
-      :selected="selected"
-      @update:selected="selected = $event"
-    ></l-cascader>
-    <p>22222</p>
+    <div style="padding: 20px">
+      <l-cascader
+        :source="source"
+        popover-height="200px"
+        :selected="selected"
+        @update:selected="selected = $event"
+      ></l-cascader>
+    </div>
   </div>
 </template>
 <script>
