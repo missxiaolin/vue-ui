@@ -1,7 +1,12 @@
 <template>
   <div class="cascaderItem" :style="{ height: height }">
     <div class="left">
-      <div class="label" v-for="(item, index) in items" @click="onClickLabel(item)" :key="index">
+      <div
+        class="label"
+        v-for="(item, index) in items"
+        @click="onClickLabel(item)"
+        :key="index"
+      >
         {{ item.name }}
         <icon class="icon" v-if="item.children" name="right"></icon>
       </div>
@@ -46,12 +51,17 @@ export default {
   },
   computed: {
     rightItems() {
-      console.log("计算rightItems");
-      let currentSelected = this.selected[this.level];
-      if (currentSelected && currentSelected.children) {
-        return currentSelected.children;
-      } else {
-        return null;
+      if (this.selected[this.level]) {
+        let selected = this.items.filter(
+          (item) => item.name === this.selected[this.level].name
+        );
+        if (
+          selected &&
+          selected[0].children &&
+          selected[0].children.length > 0
+        ) {
+          return selected[0].children;
+        }
       }
     },
   },
