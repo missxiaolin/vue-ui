@@ -1,21 +1,28 @@
 <template>
   <div>
     <div style="padding: 20px">
-      <l-cascader
+      <g-cascader
         :source.sync="source"
         popover-height="200px"
         @update:source="onUpdateSource"
         @update:selected="onUpdateSelected"
         :selected.sync="selected"
         :load-data="loadData"
-      ></l-cascader>
+      ></g-cascader>
     </div>
+    <g-popover>
+      <template>
+        <button>点我</button>
+      </template>
+      <template slot="content"> 弹出内容 </template>
+    </g-popover>
   </div>
 </template>
 <script>
-import Button from "./button.vue";
-import Cascader from "./cascader.vue";
+import Button from "./button";
+import Cascader from "./cascader";
 import db from "./db";
+import Popover from "./popover";
 
 function ajax(parentId = 0) {
   return new Promise((success, fail) => {
@@ -36,8 +43,9 @@ function ajax(parentId = 0) {
 export default {
   name: "demo",
   components: {
-    "l-button": Button,
-    "l-cascader": Cascader,
+    "g-button": Button,
+    "g-cascader": Cascader,
+    "g-popover": Popover,
   },
   data() {
     return {
@@ -47,6 +55,7 @@ export default {
   },
   created() {
     ajax(0).then((result) => {
+      console.log(result);
       this.source = result;
     });
   },
@@ -54,14 +63,6 @@ export default {
     loadData({ id }, updateSource) {
       ajax(id).then((result) => {
         updateSource(result); // 回调:把别人传给我的函数调用一下
-      });
-    },
-    xxx() {
-      ajax(this.selected[0].id).then((result) => {
-        let lastLevelSelected = this.source.filter(
-          (item) => item.id === this.selected[0].id
-        )[0];
-        this.$set(lastLevelSelected, "children", result);
       });
     },
     onUpdateSource() {},
