@@ -1,81 +1,87 @@
 <template>
-  <button class="g-button" :class="{[`icon-${iconPosition}`]: true}" @click="$emit('click')">
-    <g-icon class="icon" v-if="!loding && icon" :name="icon"></g-icon>
-    <g-icon v-if="loding" class="loding icon" name="jiazaizhong"></g-icon>
-    <div class="g-button-content">
-      <slot></slot>
+  <div>
+    <div style="padding: 20px">
+      <g-cascader
+        :source.sync="source"
+        popover-height="200px"
+        :selected.sync="selected"
+        :load-data="loadData"
+      ></g-cascader>
     </div>
-  </button>
+    {{ selected.map((item) => item.name) }}
+    <g-popover>
+      <template>
+        <button>点我</button>
+      </template>
+      <template slot="content"> 弹出内容 </template>
+    </g-popover>
+  </div>
 </template>
-
 <script>
-import Icon from "./icon";
+import Button from "./button";
+import Cascader from "./cascader";
+import db from "./db";
+import Popover from "./popover";
+
+function ajax(parentId = 0) {
+  return new Promise((success, fail) => {
+    setTimeout(() => {
+      let result = db.filter((item) => item.parent_id == parentId);
+      result.forEach((node) => {
+        if (db.filter((item) => item.parent_id === node.id).length > 0) {
+          node.isLeaf = false;
+        } else {
+          node.isLeaf = true;
+        }
+      });
+      success(result);
+    }, 3000);
+  });
+}
 
 export default {
-  name: "L-Button",
+  name: "demo",
   components: {
-    "g-icon": Icon
+    "g-button": Button,
+    "g-cascader": Cascader,
+    "g-popover": Popover,
   },
-  props: {
-    icon: {},
-    loding: {
-      type: Boolean,
-      default: false
+  data() {
+    return {
+      selected: [],
+      source: [],
+    };
+  },
+  created() {
+    ajax(0).then((result) => {
+      console.log(result);
+      this.source = result;
+    });
+  },
+  destroyed() {},
+  methods: {
+    loadData({ id }, updateSource) {
+      ajax(id).then((result) => {
+        console.log(result);
+        updateSource(result); // 回调:把别人传给我的函数调用一下
+      });
     },
-    iconPosition: {
-      type: String,
-      default: "left",
-      validator(value) {
-        return value === "left" || value === "right";
-      }
-    }
-  }
+  },
 };
 </script>
-
-<style lang="scss" scoped>
-@import "var";
-.g-button {
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+img {
+  max-width: 100%;
+}
+html {
+  --font-size: 14px;
+}
+body {
   font-size: var(--font-size);
-  height: var(--button-height);
-  padding: 0 1em;
-  border-radius: var(--button-radius);
-  border: 1px solid var(--border-color);
-  background: var(--button-bg);
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  &:hover {
-    border-color: var(--border-color-hover);
-  }
-  &:active {
-    background-color: var(--button-active-bg);
-  }
-  &:focus {
-    outline: none;
-  }
-  > .g-button-content {
-    order: 2;
-  }
-  > .icon {
-    width: 1em;
-    height: 1em;
-    vertical-align: middle;
-    order: 1;
-    margin-right: 0.1em;
-  }
-  &.icon-right {
-    > .g-button-content {
-      order: 1;
-    }
-    > .icon {
-      order: 2;
-      margin-right: 0;
-      margin-left: 0.1em;
-    }
-  }
-  .loding {
-    animation: spin 1s infinite linear;
-  }
 }
 </style>
