@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/missxiaolin/vue-ui#readme",
   "dependencies": {
+    "sinon": "^12.0.1",
+    "sinon-chai": "^3.7.0",
     "vue": "^2.5.17"
   },
   "devDependencies": {
