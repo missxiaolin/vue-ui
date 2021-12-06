@@ -54,7 +54,7 @@ describe('Input', () => {
         }
       }).$mount()
       const useElement = vm.$el.querySelector('use')
-      expect(useElement.getAttribute('xlink:href')).to.equal('#icon-tixing')
+      expect(useElement.getAttribute('xlink:href')).to.equal('#i-error')
       const errorMessage = vm.$el.querySelector('.errorMessage')
       expect(errorMessage.innerText).to.equal('你错了')
     })
@@ -75,8 +75,8 @@ describe('Input', () => {
           let event = new Event(eventName);
           Object.defineProperty(
             event, 'target', {
-            value: { value: 'hi' }, enumerable: true
-          }
+              value: {value: 'hi'}, enumerable: true
+            }
           )
           let inputElement = vm.$el.querySelector('input')
           inputElement.dispatchEvent(event)
