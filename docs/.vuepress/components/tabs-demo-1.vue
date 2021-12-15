@@ -49,7 +49,7 @@ export default {
             </g-tabs-body>
           </g-tabs>
       `
-        .replace(/ {8}/g, "")
+        .replace(/^ {8}/gm, "")
         .trim(),
     };
   },

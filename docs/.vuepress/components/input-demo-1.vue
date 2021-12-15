@@ -4,7 +4,6 @@
     <p>
       <strong>预览</strong>
     </p>
-    <g-input></g-input>
     <g-input value="中文"></g-input>
     <g-input value="中文" disabled></g-input>
     <g-input value="中文" readonly></g-input>
@@ -29,7 +28,7 @@ export default {
           <g-input value="中文" disabled></g-input>
           <g-input value="中文" readonly></g-input>
       `
-        .replace(/ {8}/g, "")
+        .replace(/^ {8}/gm, "")
         .trim(),
     };
   },
