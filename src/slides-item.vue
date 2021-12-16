@@ -1,9 +1,18 @@
 <template>
-  <transition name="slide">
-    <div class="g-slides-item" v-if="visible" :class="{ reverse }">
-      <slot></slot>
-    </div>
-  </transition>
+  <div>
+    <template v-if="animationEnabled">
+      <transition name="slide">
+        <div class="g-slides-item" v-if="visible" :class="{ reverse }">
+          <slot></slot>
+        </div>
+      </transition>
+    </template>
+    <template v-else>
+      <div class="g-slides-item" v-if="visible" :class="{ reverse }">
+        <slot></slot>
+      </div>
+    </template>
+  </div>
 </template>
 
 <script>
@@ -19,7 +28,11 @@ export default {
     return {
       selected: undefined,
       reverse: false,
+      animationEnabled: false,
     };
+  },
+  updated() {
+    this.animationEnabled = true;
   },
   computed: {
     visible() {
