@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  name: "LSlidesItem",
   props: {
     name: {
       type: String,
