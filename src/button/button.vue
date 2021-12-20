@@ -12,7 +12,7 @@
   </button>
 </template>
 <script>
-import Icon from "../icon";
+import Icon from "../icon.vue";
 export default {
   name: "L-Button",
   components: {
@@ -35,7 +35,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "var";
+@import "../var"; // webpack 配置 scss 根目录
 .g-button {
   font-size: $font-size;
   height: $button-height;
