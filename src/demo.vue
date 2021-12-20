@@ -19,8 +19,8 @@
   </div>
 </template>
 <script>
-import GSlides from "./slides";
-import GSlidesItem from "./slides-item";
+import GSlides from "./slides/slides.vue";
+import GSlidesItem from "./slides/slides-item.vue";
 
 export default {
   name: "demo",

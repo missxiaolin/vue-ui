@@ -79,7 +79,7 @@ export default {
     },
     items() {
       return this.$children.filter(
-        (vm) => vm.$options.name === "GuluSlidesItem"
+        (vm) => vm.$options.name === "L-SlidesItem"
       );
     },
   },
