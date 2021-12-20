@@ -9,30 +9,30 @@ export default {
   inject: ["eventBus"],
   data() {
     return {
-      active: false
+      active: false,
     };
   },
   props: {
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     name: {
       type: String | Number,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     classes() {
       return {
         active: this.active,
-        disabled: this.disabled
+        disabled: this.disabled,
       };
-    }
+    },
   },
   created() {
     if (this.eventBus) {
-      this.eventBus.$on("update:selected", name => {
+      this.eventBus.$on("update:selected", (name) => {
         this.active = name === this.name;
       });
     }
@@ -44,8 +44,8 @@ export default {
       }
       this.eventBus && this.eventBus.$emit("update:selected", this.name, this);
       this.$emit("click", this);
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

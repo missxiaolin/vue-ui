@@ -7,9 +7,10 @@
 export default {
   name: "L-TabsBody",
   inject: ["eventBus"],
-  created() {}
+  created() {},
 };
 </script>
 <style>
-
+.tabs-body {
+}
 </style>
