@@ -33,7 +33,7 @@
 <style scoped>
 </style>
 <script>
-import GButton from "../../../src/button";
+import GButton from "../../../src/button/button";
 import GPopover from "../../../src/popover";
 
 export default {

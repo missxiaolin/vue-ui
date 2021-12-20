@@ -1,5 +1,5 @@
 <template>
-  <div style="padding-top: 16px">
+  <div style="padding-top: 16px;">
     <h2>简单用法</h2>
     <p>
       <strong>预览</strong>
@@ -16,23 +16,21 @@
   </div>
 </template>
 <script>
-import Button from "../../../src/button";
+  import Button from '../../../src/button/button'
 
-export default {
-  components: {
-    "g-button": Button,
-  },
-  data() {
-    return {
-      content: `
+  export default {
+    components: {
+      'g-button': Button
+    },
+    data () {
+      return {
+        content: `
           <g-button>默认按钮</g-button>
           <g-button icon="settings">默认按钮</g-button>
           <g-button :loading="true">默认按钮</g-button>
           <g-button disabled>默认按钮</g-button>
-      `
-        .replace(/^ {8}/gm, "")
-        .trim(),
-    };
-  },
-};
+      `.replace(/^ {8}/gm, '').trim()
+      }
+    }
+  }
 </script>
