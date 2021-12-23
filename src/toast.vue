@@ -161,6 +161,7 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   .close {
     padding-left: 16px;
     flex-shrink: 0;
+    cursor: pointer;
   }
   .line {
     height: 100%;
