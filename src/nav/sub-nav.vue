@@ -1,8 +1,8 @@
 <template>
-  <div class="g-sub-nav" :class="{ active }" v-click-outside="close">
+  <div class="g-sub-nav" :class="{ active, vertical }" v-click-outside="close">
     <span class="g-sub-nav-label" @click="onClick">
       <slot name="title"></slot>
-      <span class="g-sub-nav-icon" :class="{ open }">
+      <span class="g-sub-nav-icon" :class="{ open, vertical }">
         <g-icon name="right"></g-icon>
       </span>
     </span>
@@ -95,25 +95,18 @@ export default {
 
 <style scoped lang="scss">
 @import "var";
-.x-enter-active,
-.x-leave-active {
-}
-.x-enter,
-.x-leave-to {
-}
-.x-enter-to,
-.x-leave {
-}
 .g-sub-nav {
   position: relative;
-  &.active {
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      border-bottom: 2px solid $blue;
-      width: 100%;
+  &:not(.vertical) {
+    &.active {
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-bottom: 2px solid $blue;
+        width: 100%;
+      }
     }
   }
   &-label {
@@ -141,6 +134,7 @@ export default {
       border-radius: 0;
       border: none;
       box-shadow: none;
+      overflow: hidden;
     }
   }
 }
@@ -166,6 +160,12 @@ export default {
     margin-left: 1em;
     svg {
       fill: $light-color;
+    }
+    &.vertical {
+      transform: rotate(90deg);
+      &.open {
+        transform: rotate(270deg);
+      }
     }
     &.open {
       transform: rotate(180deg);

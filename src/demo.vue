@@ -1,7 +1,9 @@
 <template>
   <div>
-    <g-nav :selected.sync="selected" style=" margin: 20px;">
-      <g-nav-item name="home">首页</g-nav-item>
+    <g-nav :selected.sync="selected" style="margin: 20px">
+      <g-nav-item name="home">
+        <a href="/" target="_blank"> 首页 </a>
+      </g-nav-item>
       <g-sub-nav name="about">
         <template slot="title">关于</template>
         <g-nav-item name="culture">企业文化</g-nav-item>
@@ -17,11 +19,14 @@
             <g-nav-item name="cn">电信</g-nav-item>
           </g-sub-nav>
         </g-sub-nav>
-
       </g-sub-nav>
       <g-nav-item name="hire">招聘</g-nav-item>
     </g-nav>
-    <g-nav :selected.sync="selected" vertical style=" margin: 20px; margin-top: 200px;">
+    <g-nav
+      :selected.sync="selected"
+      vertical
+      style="width: 200px; margin: 20px; margin-top: 200px"
+    >
       <g-nav-item name="home">首页</g-nav-item>
       <g-sub-nav name="about">
         <template slot="title">关于</template>
@@ -38,7 +43,6 @@
             <g-nav-item name="cn">电信</g-nav-item>
           </g-sub-nav>
         </g-sub-nav>
-
       </g-sub-nav>
       <g-nav-item name="hire">招聘</g-nav-item>
     </g-nav>
@@ -46,20 +50,24 @@
   </div>
 </template>
 <script>
-  import GNav from './nav/nav.vue'
-  import GNavItem from './nav/nav-item.vue'
-  import GSubNav from './nav/sub-nav.vue'
+import GNav from "./nav/nav.vue";
+import GNavItem from "./nav/nav-item.vue";
+import GSubNav from "./nav/sub-nav.vue";
 
-  export default {
-    name: "demo",
-    components: {GNav, GNavItem, GSubNav},
-    data () {
-      return {
-        selected: ['culture']
-      };
-    },
-  };
+export default {
+  name: "demo",
+  components: { GNav, GNavItem, GSubNav },
+  data() {
+    return {
+      selected: ["culture"],
+    };
+  },
+};
 </script>
 <style>
-  * {margin: 0; padding: 0; box-sizing: border-box;}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 </style>
