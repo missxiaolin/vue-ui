@@ -1,47 +1,84 @@
 <template>
   <div class="gulu-pager">
+    <span class="gulu-pager-nav prev" :class="{ disabled: currentPage === 1 }">
+      <g-icon name="left"></g-icon>
+    </span>
+    <template v-for="page in pages">
+      <template v-if="page === currentPage">
+        <span class="gulu-pager-item current">{{ page }}</span>
+      </template>
+      <template v-else-if="page === '...'">
+        <g-icon class="gulu-pager-separator" name="dots"></g-icon>
+      </template>
+      <template v-else>
+        <span href="#" class="gulu-pager-item other">{{ page }}</span>
+      </template>
+    </template>
     <span
-      v-for="page in pages"
-      class="gulu-pager-item"
-      :key="page"
-      :class="{ active: page === currentPage, separator: page === '...' }"
+      class="gulu-pager-nav next"
+      :class="{ disabled: currentPage === totalPage }"
     >
-      {{ page }}
+      <g-icon name="right"></g-icon>
     </span>
   </div>
 </template>
 <style scoped lang="scss">
 @import "var";
 .gulu-pager {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  $width: 20px;
+  $height: 20px;
+  $font-size: 12px;
+  &-separator {
+    width: $width;
+    font-size: $font-size;
+  }
   &-item {
+    min-width: $width;
+    height: $height;
+    font-size: $font-size;
     border: 1px solid #e1e1e1;
     border-radius: $border-radius;
     padding: 0 4px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
-    min-width: 20px;
-    height: 20px;
     margin: 0 4px;
     cursor: pointer;
-    &.separator {
-      border: none;
-    }
-    &.active,
+    &.current,
     &:hover {
       border-color: $blue;
     }
-    &.active {
+    &.current {
       cursor: default;
+    }
+  }
+  &-nav {
+    margin: 0 4px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: $grey;
+    height: $height;
+    width: $width;
+    border-radius: $border-radius;
+    font-size: $font-size;
+    &.disabled {
+      svg {
+        fill: darken($grey, 30%);
+      }
     }
   }
 }
 </style>
 
 <script>
+import GIcon from "./icon";
 export default {
-  name: "GuluPager",
+  name: "L-Pager",
+  components: { GIcon },
   props: {
     totalPage: {
       type: Number,
@@ -66,7 +103,9 @@ export default {
         this.currentPage - 2,
         this.currentPage + 1,
         this.currentPage + 2,
-      ].sort((a, b) => a - b)
+      ]
+        .filter((n) => n >= 1 && n <= this.totalPage)
+        .sort((a, b) => a - b)
     ).reduce((prev, current, index, array) => {
       prev.push(current);
       array[index + 1] !== undefined &&
