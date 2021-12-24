@@ -12,7 +12,7 @@
   </button>
 </template>
 <script>
-import Icon from "../icon.vue";
+import Icon from "../icon";
 export default {
   name: "L-Button",
   components: {
@@ -36,7 +36,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "var"; // webpack 配置 scss 根目录
-
 .g-button {
   font-size: $font-size;
   height: $button-height;
@@ -76,7 +75,7 @@ export default {
     }
   }
   .loading {
-    animation: spin 2s infinite linear;
+    @include spin;
   }
 }
 </style>

@@ -1,13 +1,13 @@
 <template>
   <svg class="g-icon" @click="$emit('click', $event)">
-    <use :xlink:href="`#i-${name}`" />
+    <use :xlink:href="`#i-${name}`"></use>
   </svg>
 </template>
 <script>
-import "./svg.js";
+import "./svg";
 export default {
   name: "L-Icon",
-  props: ["name"]
+  props: ["name"],
 };
 </script>
 <style lang="scss" scoped>

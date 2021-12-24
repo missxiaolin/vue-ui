@@ -6,6 +6,9 @@
         :data-source="dataSource"
         bordered
         :selected-items.sync="selected"
+        :order-by.sync="orderBy"
+        @update:orderBy="x"
+        :loading="loading"
       ></g-table>
     </div>
     <div style="margin: 20px">
@@ -34,9 +37,14 @@ export default {
       currentPage: 1,
       selected: [],
       columns: [
-        { text: "姓名", field: "name" },
+        { text: "姓名", field: "name" }, // 1
         { text: "分数", field: "score" },
       ],
+      orderBy: {
+        // true - 开启排序，但是不确定asc desc
+        score: "desc",
+      },
+      loading: false,
       dataSource: [
         { id: 1, name: "方方", score: 100 },
         { id: 2, name: "圆圆", score: 99 },
@@ -49,7 +57,15 @@ export default {
       ],
     };
   },
-  methods: {},
+  methods: {
+    x() {
+      this.loading = true;
+      setTimeout(() => {
+        this.dataSource = this.dataSource.sort((a, b) => a.score - b.score);
+        this.loading = false;
+      }, 3000);
+    },
+  },
 };
 </script>
 <style>
