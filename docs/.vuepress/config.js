@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   base: '/ui/',
   title: '小林UI',
@@ -32,5 +34,8 @@ module.exports = {
         ]
       },
     ]
+  },
+  scss:{
+    includePaths: [path.join(__dirname, '../../styles')]
   }
 }
