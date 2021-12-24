@@ -12,15 +12,18 @@
     </span>
     <template v-for="page in pages">
       <template v-if="page === currentPage">
-        <span class="gulu-pager-item current">{{ page }}</span>
+        <span :key="page" class="gulu-pager-item current">{{ page }}</span>
       </template>
       <template v-else-if="page === '...'">
-        <g-icon class="gulu-pager-separator" name="dots"></g-icon>
+        <g-icon :key="page" class="gulu-pager-separator" name="dots"></g-icon>
       </template>
       <template v-else>
-        <span class="gulu-pager-item other" @click="onClickPage(page)">{{
-          page
-        }}</span>
+        <span
+          :key="page"
+          class="gulu-pager-item other"
+          @click="onClickPage(page)"
+          >{{ page }}</span
+        >
       </template>
     </template>
     <span
@@ -32,6 +35,70 @@
     </span>
   </div>
 </template>
+
+<script>
+import GIcon from "./icon";
+
+function unique(array) {
+  // return [...new Set(array)]
+  // array = [1 1 2 3 4 5 20]
+  const object = {};
+  array.map((number) => {
+    object[number] = true;
+  });
+  return Object.keys(object).map((s) => parseInt(s, 10));
+}
+
+export default {
+  name: "L-Pager",
+  components: { GIcon },
+  props: {
+    totalPage: {
+      type: Number,
+      required: true,
+    },
+    currentPage: {
+      type: Number,
+      required: true,
+    },
+    hideIfOnePage: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  computed: {
+    pages() {
+      // 依赖了 totalPage 和 currentPage
+      return unique(
+        [
+          1,
+          this.totalPage,
+          this.currentPage,
+          this.currentPage - 1,
+          this.currentPage - 2,
+          this.currentPage + 1,
+          this.currentPage + 2,
+        ]
+          .filter((n) => n >= 1 && n <= this.totalPage)
+          .sort((a, b) => a - b)
+      ).reduce((prev, current, index, array) => {
+        prev.push(current);
+        array[index + 1] !== undefined &&
+          array[index + 1] - array[index] > 1 &&
+          prev.push("...");
+        return prev;
+      }, []);
+    },
+  },
+  methods: {
+    onClickPage(n) {
+      if (n >= 1 && n <= this.totalPage) {
+        this.$emit("update:currentPage", n);
+      }
+    },
+  },
+};
+</script>
 
 <style scoped lang="scss">
 @import "var";
@@ -89,70 +156,4 @@
     }
   }
 }
-</style>
-
-<script>
-import GIcon from "./icon";
-export default {
-  name: "L-Pager",
-  components: { GIcon },
-  props: {
-    totalPage: {
-      type: Number,
-      required: true,
-    },
-    currentPage: {
-      type: Number,
-      required: true,
-    },
-    hideIfOnePage: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  computed: {
-    pages() {
-      // 依赖了 totalPage 和 currentPage
-      return unique(
-        [
-          1,
-          this.totalPage,
-          this.currentPage,
-          this.currentPage - 1,
-          this.currentPage - 2,
-          this.currentPage + 1,
-          this.currentPage + 2,
-        ]
-          .filter((n) => n >= 1 && n <= this.totalPage)
-          .sort((a, b) => a - b)
-      ).reduce((prev, current, index, array) => {
-        prev.push(current);
-        array[index + 1] !== undefined &&
-          array[index + 1] - array[index] > 1 &&
-          prev.push("...");
-        return prev;
-      }, []);
-    },
-  },
-  methods: {
-    onClickPage(n) {
-      if (n >= 1 && n <= this.totalPage) {
-        this.$emit("update:currentPage", n);
-      }
-    },
-  },
-};
-
-function unique(array) {
-  // return [...new Set(array)]
-  // array = [1 1 2 3 4 5 20]
-  const object = {};
-  array.map((number) => {
-    object[number] = true;
-  });
-  return Object.keys(object).map((s) => parseInt(s, 10));
-}
-</script>
-
-<style scoped lang="scss">
 </style>
