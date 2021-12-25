@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import GIcon from "./icon";
+import GIcon from "./icon.vue";
 export default {
   components: { GIcon },
   name: "L-Table",
