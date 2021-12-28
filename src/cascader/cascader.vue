@@ -19,7 +19,7 @@
 
 <script>
 import CascaderItems from "./cascader-items.vue";
-import ClickOutside from "../click-outside.vue";
+import ClickOutside from "../click-outside";
 export default {
   name: "L-Cascader",
   components: { CascaderItems },
