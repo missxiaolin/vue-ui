@@ -2,12 +2,11 @@ import chai, { expect } from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 import { shallowMount, mount } from '@vue/test-utils'
-import TabsPane from '../../src/tabs/tabs-pane'
-
+import Col from '../../src/grid/col'
 chai.use(sinonChai)
 
-describe('TabsPane.vue', () => {
+describe('Col.vue', () => {
     it('存在.', () => {
-        expect(TabsPane).to.exist
+        expect(Col).to.exist
     })
 })
