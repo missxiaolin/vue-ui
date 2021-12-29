@@ -2,7 +2,7 @@
   "name": "xiaolin-ui",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main":"dist/l-ui.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name l-ui src/index.js",
