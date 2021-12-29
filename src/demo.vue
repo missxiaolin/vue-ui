@@ -15,8 +15,8 @@
 </template>
 <script>
   import GPager from './pager'
-  import GTable from './table'
-  import GTableColumn from './table-column'
+  import GTable from './table/table.vue'
+  import GTableColumn from './table/table-column.vue'
 
   export default {
     name: "demo",
