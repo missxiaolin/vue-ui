@@ -33,5 +33,5 @@ export { default as Table } from './table/table'
 export { default as Toast } from './toast'
 export { default as Uploader } from './uploader'
 export { default as Validate } from './validate'
-
+export { default as BackToTop } from './backToTop/index'
 
