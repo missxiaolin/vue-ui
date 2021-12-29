@@ -1,17 +1,15 @@
 <template>
-  <div style="height: 5000px;backgrount: red;">
-    <GulpBackToTop transitionName="star" />
-
-
+  <div>
+    <JsonEditor />
   </div>
 </template>
 <script>
-import GulpBackToTop from "./backToTop/index.vue";
+import JsonEditor from './jsonEditor/index.vue'
 
 export default {
   name: "demo",
   components: {
-    GulpBackToTop,
+    JsonEditor
   },
   data() {
     return {};
