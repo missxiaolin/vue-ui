@@ -82,7 +82,14 @@
               </td>
               <template v-for="column in columns">
                 <td :style="{ width: column.width + 'px' }" :key="column.field">
-                  {{ item[column.field] }}
+                  <template v-if="column.render">
+                    <vnodes
+                      :vnodes="column.render({ value: item[column.field] })"
+                    ></vnodes>
+                  </template>
+                  <template v-else>
+                    {{ item[column.field] }}
+                  </template>
                 </td>
               </template>
               <td v-if="$scopedSlots.default">
@@ -109,11 +116,18 @@
 <script>
 import GIcon from "./icon";
 export default {
-  components: { GIcon },
+  components: {
+    GIcon,
+    vnodes: {
+      functional: true,
+      render: (h, context) => context.props.vnodes,
+    },
+  },
   name: "L-Table",
   data() {
     return {
       expendedIds: [],
+      columns: [],
     };
   },
   props: {
@@ -143,10 +157,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    columns: {
-      type: Array,
-      required: true,
-    },
     dataSource: {
       type: Array,
       required: true,
@@ -168,6 +178,14 @@ export default {
     },
   },
   mounted() {
+    this.columns = this.$slots.default.map((node) => {
+      let { text, field, width } = node.componentOptions.propsData;
+      let render = node.data.scopedSlots && node.data.scopedSlots.default;
+      return { text, field, width, render };
+    });
+    let result = this.columns[0].render({ value: "方方" });
+    console.log(result);
+
     let table2 = this.$refs.table.cloneNode(false);
     this.table2 = table2;
     table2.classList.add("gulu-table-copy");
