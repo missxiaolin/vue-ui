@@ -1,15 +1,15 @@
 <template>
   <div>
-    <JsonEditor />
+    <simplemdeMd />
   </div>
 </template>
 <script>
-import JsonEditor from './jsonEditor/index.vue'
+import simplemdeMd from './marDowndEditor'
 
 export default {
   name: "demo",
   components: {
-    JsonEditor
+    simplemdeMd
   },
   data() {
     return {};
