@@ -37,7 +37,7 @@
 
 <script>
 import GIcon from "./icon";
-import http from "./http";
+import http from "./util/http";
 
 export default {
   name: "L-Uploader",

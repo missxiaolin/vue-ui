@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import ClickOutside from "../click-outside";
+import ClickOutside from "../util/click-outside";
 import GIcon from "../icon";
 export default {
   components: { GIcon },
