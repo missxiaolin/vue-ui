@@ -27,7 +27,8 @@
     "jsonlint": "^1.6.3",
     "script-loader": "^0.7.2",
     "simplemde": "^1.11.2",
-    "vue": "^2.5.17"
+    "vue": "^2.5.17",
+    "xlsx": "^0.17.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0",
