@@ -36,4 +36,5 @@ export { default as Validate } from './validate'
 export { default as BackToTop } from './backToTop/index'
 export { default as JsonEditor } from './jsonEditor/index'
 export { default as MarDowndEditor } from './marDowndEditor/index'
+export { default as twoDndList } from './twoDndList/index'
 
